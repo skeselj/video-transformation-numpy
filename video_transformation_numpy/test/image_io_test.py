@@ -1,11 +1,11 @@
 """Tests for the image_io.py."""
 
-from video_transformation_numpy import image_io
 import numpy as np
 import os
 import shutil
 from unittest import main
 from unittest import TestCase
+from video_transformation_numpy import image_io
 
 
 TEMP_DIR = './tmp'
