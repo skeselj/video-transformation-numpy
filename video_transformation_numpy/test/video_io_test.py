@@ -4,8 +4,7 @@ import numpy as np
 import os
 from unittest import main
 from unittest import TestCase
-from video_io import read_video
-from video_io import write_video
+from video_transformation_numpy import video_io
 
 
 TEMP_DIR = './tmp'
@@ -22,7 +21,7 @@ class TestVideoIo(TestCase):
         '''Given a path that doesn't contain a video, read_video outputs should be Nones.'''
 
         input_path = os.path.join(TEMP_DIR, 'nonexistent.mp4')
-        video_np, codec, fps = read_video(input_path)
+        video_np, codec, fps = video_io.read_video(input_path)
 
         self.assertIsNone(video_np)
         self.assertIsNone(codec)
@@ -39,10 +38,10 @@ class TestVideoIo(TestCase):
         video_np_in = np.zeros((num_frames_in, frame_height_in, frame_width_in, num_channels_in),
                                dtype='uint8')
 
-        self.assertTrue(write_video(path, video_np_in, codec_in, fps_in))
+        self.assertTrue(video_io.write_video(path, video_np_in, codec_in, fps_in))
 
         # Read video bytes, and associate metadata from the same file.
-        video_np_out, codec_out, fps_out = read_video(path)
+        video_np_out, codec_out, fps_out = video_io.read_video(path)
 
         num_frames_out, frame_height_out, frame_width_out, num_channels_out = video_np_out.shape
 

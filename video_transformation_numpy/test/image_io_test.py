@@ -1,7 +1,6 @@
 """Tests for the image_io.py."""
 
-from image_io import read_image
-from image_io import write_image
+from video_transformation_numpy import image_io
 import numpy as np
 import os
 import shutil
@@ -27,7 +26,7 @@ class TestImageIo(TestCase):
 
         input_path = os.path.join(TEMP_DIR, 'nonexistent.jpg')
         with self.assertRaises(ValueError):
-            _ = read_image(input_path)
+            _ = image_io.read_image(input_path)
 
     def testAllZeroReadThenWrite(self):
         '''Write a NumPy array of all zeros to file, then read it.'''
@@ -38,10 +37,10 @@ class TestImageIo(TestCase):
         height_in, width_in = 360, 640
         image_np_in = np.zeros((height_in, width_in, 3), dtype='uint8')
 
-        write_image(path, image_np_in)
+        image_io.write_image(path, image_np_in)
 
         # Read image bytes.
-        image_np_out = read_image(path)
+        image_np_out = image_io.read_image(path)
 
         height_out, width_out, num_channels_out = image_np_out.shape
 
