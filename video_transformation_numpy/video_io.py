@@ -64,6 +64,8 @@ def write_video(path: str,
                 fps: float) -> bool:
     '''Writes an RGB video, from NumPy bytes, to a file path.
 
+    TODO(skeselj): make this not fail silently when there is no dir.
+
     Args:
         path: the filepath to write to.
         video_np: raw video bytes. Shape is (N, H, W, 3), each element is a uint8 in in [0, 255].

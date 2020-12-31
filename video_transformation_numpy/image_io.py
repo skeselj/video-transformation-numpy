@@ -31,9 +31,13 @@ def read_image(path: str) -> np.ndarray:
 
 def write_image(path: str, image_np: np.ndarray) -> np.ndarray:
     """Write an image to a path using cv2.
+
+    TODO(skeselj): make this not fail silently when there is no dir.
+
     Args:
         path: path to an image. JPEG format works, other formats probably work too.
         image_np: array with shape (H, W, 3). Each element is a uint8 in [0, 255].
+
     Returns:
         Nothing.
     """
